@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {AddEpisodeModalComponent} from './component/add-episode-modal/add-episode-modal.component';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'front';
+
+  constructor(private modalService: NgbModal) {
+  }
+
+  onOpenModal(type: string): void {
+    if (type === 'add') {
+      this.modalService.open(AddEpisodeModalComponent);
+    }
+  }
 }

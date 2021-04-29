@@ -1,0 +1,14 @@
+<ngb-accordion [closeOthers]="true" activeIds="episode-panel-0" class="container">
+  <ngb-panel *ngFor="let season of data; let i = in; let ind = index" id="episode-panel-{{ind}}"
+             title="Season {{season.season}}">
+    <ng-template ngbPanelContent>
+      <div *ngFor="let episode of season.episode" class="container-fluid">
+        <div class="row" (click)="onEpisodeItemClick(episode);">
+          <div class="container text-center">
+            <label class="text-black" [style.color]="episode === activeEpisode? 'red':'black'">{{episode.title}}</label>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ngb-panel>
+</ngb-accordion>

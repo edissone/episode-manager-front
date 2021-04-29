@@ -1,0 +1,64 @@
+<div class="modal-content modal-lg">
+  <div class="modal-header">
+    <h5 class="modal-title" id="addEpisodeModalLabel">Add Episode</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="addForm" (ngSubmit)="onAddEpisode()">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <div class="alert alert-danger"
+             *ngIf="addForm.controls['title'].invalid && addForm.controls['title'].touched">
+          Blank title!
+        </div>
+        <input class="form-control" name="title" id="title" formControlName="title"/>
+      </div>
+      <div class="form-group">
+        <label for="season">Season</label>
+        <div class="alert alert-danger"
+             *ngIf="addForm.controls['season'].invalid && addForm.controls['season'].touched">
+          Blank season!
+        </div>
+        <input class="form-control" name="season" id="season" formControlName="season"/>
+      </div>
+      <div class="form-group">
+        <label for="number">Number</label>
+        <div class="alert alert-danger"
+             *ngIf="addForm.controls['number'].invalid && addForm.controls['number'].touched">
+          Blank season!
+        </div>
+        <input class="form-control" name="number" id="number" formControlName="number"/>
+      </div>
+      <div class="form-group">
+        <label for="number">Release date</label>
+        <div class="input-group">
+          <input class="form-control" placeholder="yyyy-mm-dd"
+                 name="dp" formControlName="releasedAt" ngbDatepicker #d="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <ng-select
+          [items]="characters"
+          [multiple]="true"
+          [closeOnSelect]="false"
+          [hideSelected]="true"
+          bindLabel="name"
+          placeholder="Select character"
+          formControlName="characters"
+        >
+        </ng-select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="add-employee-form" class="btn btn-secondary" data-dismiss="modal"
+                (click)="closeModal()">Close
+        </button>
+        <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary">Save</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<div *ngIf="episode != null; else elseBlock" class="container-fluid p-lg-5">
+  <h1> {{episode.title}} </h1>
+  <p> Episode №{{episode.number}} in season {{episode.season}} </p>
+  <hr>
+  <p> Release date: {{episode.releasedAt}} </p>
+  <hr>
+  <ng-container *ngIf="episode.characters.length > 0; else noCharactersBlock">
+    <table class="table table-sm table-bordered">
+      <thead class="thead-light">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Origin</th>
+      </tr>
+      </thead>
+      <tbody>
+      <ng-container *ngFor="let character of episode.characters">
+        <tr>
+          <td>{{character.name}}</td>
+          <td>{{character.gender}}</td>
+          <td>{{character.origin}}</td>
+        </tr>
+      </ng-container>
+      </tbody>
+    </table>
+  </ng-container>
+</div>
+<ng-template #elseBlock><span> Choose the episode </span></ng-template>
+<ng-template #noCharactersBlock><span> There is no characters =( </span></ng-template>
